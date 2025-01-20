@@ -195,6 +195,8 @@
     <string name="summary_checkbox_gamepad_motion_fallback">Uses your device\'s built-in motion sensors if gamepad sensors are not supported by your connected gamepad or your Android version.\nNote: Enabling this option may cause your gamepad to appear as a PlayStation controller on the host.</string>
     <string name="title_checkbox_device_motion_handheld">Device is held upright (handheld)</string>
     <string name="summary_checkbox_device_motion_handheld">Remaps the device\'s motion sensors for a device held upright with the screen facing you, like a handheld or a phone in a controller grip. Turning left and right is reported as yaw instead of roll.</string>
+    <string name="title_checkbox_back_as_guide">Back button as Guide</string>
+    <string name="summary_checkbox_back_as_guide">Remap physical Back button as Guide (PS/HOME) button.</string>
 
     <string name="category_input_settings">Input Settings</string>
     <string name="title_checkbox_touchscreen_trackpad">Use the touchscreen as a trackpad</string>
