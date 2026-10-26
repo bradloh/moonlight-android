@@ -197,6 +197,8 @@
     <string name="summary_checkbox_device_motion_handheld">Remaps the device\'s motion sensors for a device held upright with the screen facing you, like a handheld or a phone in a controller grip. Turning left and right is reported as yaw instead of roll.</string>
     <string name="title_checkbox_back_as_guide">Back button as Guide</string>
     <string name="summary_checkbox_back_as_guide">Remap physical Back button as Guide (PS/HOME) button.</string>
+    <string name="title_checkbox_swap_select_and_touchpad">Swap View button and Touchpad</string>
+    <string name="summary_checkbox_swap_select_and_touchpad">For controllers without a touchpad that are emulated as a PlayStation controller for motion support (handhelds, phone grips, or controllers like the Switch Pro Controller), View/Select sends a touchpad click and View+L1 sends View/Select. Real PlayStation controllers are unaffected.</string>
 
     <string name="category_input_settings">Input Settings</string>
     <string name="title_checkbox_touchscreen_trackpad">Use the touchscreen as a trackpad</string>

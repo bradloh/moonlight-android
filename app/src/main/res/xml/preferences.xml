@@ -137,6 +137,11 @@
             android:title="@string/title_checkbox_back_as_guide"
             android:summary="@string/summary_checkbox_back_as_guide"
             android:defaultValue="false" />
+        <CheckBoxPreference
+            android:key="checkbox_swap_select_and_touchpad"
+            android:title="@string/title_checkbox_swap_select_and_touchpad"
+            android:summary="@string/summary_checkbox_swap_select_and_touchpad"
+            android:defaultValue="false" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/category_input_settings"
         android:key="category_input_settings">
