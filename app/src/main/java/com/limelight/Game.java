@@ -97,6 +97,7 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     // Only 2 touches are supported
     private final TouchContext[] touchContextMap = new TouchContext[2];
     private long threeFingerDownTime = 0;
+    private boolean nativeTouchSuppressed = false;
 
     private static final int REFERENCE_HORIZ_RES = 1280;
     private static final int REFERENCE_VERT_RES = 720;
@@ -2017,6 +2018,13 @@ public class Game extends Activity implements SurfaceHolder.Callback,
                 int eventX = (int)(event.getX(actionIndex) + xOffset);
                 int eventY = (int)(event.getY(actionIndex) + yOffset);
 
+                boolean useNativeTouch = prefConfig.nativeTouch && !prefConfig.touchscreenTrackpad;
+
+                // A new gesture is starting, so native touch may be used again
+                if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                    nativeTouchSuppressed = false;
+                }
+
                 // Special handling for 3 finger gesture
                 if (event.getActionMasked() == MotionEvent.ACTION_POINTER_DOWN &&
                         event.getPointerCount() == 3) {
@@ -2029,17 +2037,24 @@ public class Game extends Activity implements SurfaceHolder.Callback,
                         aTouchContext.cancelTouch();
                     }
 
+                    // Cancel any native touches already sent to the host and stop
+                    // sending native touch for the rest of this gesture, so the
+                    // 3 finger tap can still toggle the software keyboard.
+                    if (useNativeTouch && !nativeTouchSuppressed) {
+                        conn.sendTouchEvent(MoonBridge.LI_TOUCH_EVENT_CANCEL_ALL, 0,
+                                0, 0, 0, 0, 0,
+                                MoonBridge.LI_ROT_UNKNOWN);
+                    }
+                    nativeTouchSuppressed = true;
+
                     return true;
                 }
 
-                // TODO: Re-enable native touch when have a better solution for handling
-                // cancelled touches from Android gestures and 3 finger taps to activate
-                // the software keyboard.
-                /*if (!prefConfig.touchscreenTrackpad && trySendTouchEvent(view, event)) {
+                if (useNativeTouch && !nativeTouchSuppressed && trySendTouchEvent(view, event)) {
                     // If this host supports touch events and absolute touch is enabled,
                     // send it directly as a touch event.
                     return true;
-                }*/
+                }
 
                 TouchContext context = getTouchContext(actionIndex);
                 if (context == null) {

@@ -149,7 +149,14 @@
             android:key="checkbox_touchscreen_trackpad"
             android:title="@string/title_checkbox_touchscreen_trackpad"
             android:summary="@string/summary_checkbox_touchscreen_trackpad"
-            android:defaultValue="true" />
+            android:defaultValue="true"
+            android:disableDependentsState="true" />
+        <CheckBoxPreference
+            android:key="checkbox_native_touch"
+            android:dependency="checkbox_touchscreen_trackpad"
+            android:title="@string/title_checkbox_native_touch"
+            android:summary="@string/summary_checkbox_native_touch"
+            android:defaultValue="false" />
         <CheckBoxPreference
             android:key="checkbox_mouse_nav_buttons"
             android:title="@string/title_checkbox_mouse_nav_buttons"
